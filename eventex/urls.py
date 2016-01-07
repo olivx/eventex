@@ -26,5 +26,5 @@ urlpatterns = [
     url(r'^$', home),
     url(r'^admin/', admin.site.urls),
 
-    url(r'inscricao/$', subscribe)
+    url(r'inscricao/$', subscribe, name='inscricao')
 ]
