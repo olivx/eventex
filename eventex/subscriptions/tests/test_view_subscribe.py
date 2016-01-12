@@ -3,7 +3,7 @@ from django.test import TestCase
 from eventex.subscriptions.forms import SubscriptionForm
 
 
-class SubscriptionsTests(TestCase):
+class SubscribeGet(TestCase):
 
     #0 instacia de requete
     def setUp(self):
@@ -19,35 +19,28 @@ class SubscriptionsTests(TestCase):
         """Must use subscriptions/subscription_form.html"""
         self.assertTemplateUsed(self.reps, 'subscriptions/subscription_form.html')
 
-    # 3 Testar oque contem no html do templates
-    def test_html(self):
-        """Must cntains html inputs forms, name, cpf, emial, telefone"""
-        self.assertContains(self.reps,'<form')
-        self.assertContains(self.reps,'<input',6)
-        self.assertContains(self.reps,'type="text"',3)
-        self.assertContains(self.reps,'type="email"')
-        self.assertContains(self.reps,'type="submit"')
-
-    # 4 Testar csrf
+    # Tets csrf no form
     def test_csrf(self):
         """Must contains csrf_token"""
         self.assertContains(self.reps, "csrfmiddlewaretoken")
 
-    # 5 Testar se existe um form
-    def test_form(self):
-        """Must have subscription from"""
-        form = self.reps.context['form']
-        self.assertIsInstance(form, SubscriptionForm)
+    #Testar oque contem no html do templates
+    def test_fields(self):
+        """Must contains html inputs forms, name, cpf, emial, telefone"""
+        tags = (
+            ('<form', 1),
+            ('<input', 6),
+            ('type="text"', 3),
+            ('type="email"', 1),
+            ('type="submit"', 1),
+        )
+        for text, number in tags:
+            with self.subTest():
+                 self.assertContains(self.reps, text, number)
 
-    # 6 Testar se existe os forms
-    def test_form_has_fields(self):
-        """Form must have 4 fields name, cpf, email, phone"""
-        form = self.reps.context['form']
-        self.assertSequenceEqual(['name', 'cpf', 'email', 'phone'], list(form.fields))
 
 
-
-class SubcriptionPostTest(TestCase):
+class SubcribePostValid(TestCase):
 
     def setUp(self):
         data = dict(name='Thiago Oliveira', cpf='12345678901',
@@ -55,25 +48,18 @@ class SubcriptionPostTest(TestCase):
         self.resp = self.client.post('/inscricao/', data)
 
     def test_redirect_incricao(self):
-        '''Valued Post should redirect to Inscricao'''
+        '''Valid Post should redirect to Inscricao status code redirect 302'''
         self.assertEqual(302, self.resp.status_code)
 
     def test_send_email_inscricao(self):
+
+        """ Send email """
         self.assertEqual(1, len(mail.outbox))
 
-    def test_subcription_mail_expect(self):
 
-        expect = mail.outbox[0]
-        self.assertEqual(expect.subject, 'Confirmação de Inscrição!')
-        self.assertEqual(expect.from_email, 'oliveiravicente.net@gmail.com')
-        self.assertEqual(expect.to, ['contato@eventex.com', 'oliveiravicente.net@gmail.com'])
 
-        self.assertIn('Thiago Oliveira', expect.body)
-        self.assertIn('12345678901', expect.body)
-        self.assertIn('oliveiravicente.net@gmail.com', expect.body)
-        self.assertIn('11-97051-3508', expect.body)
+class SubscribePostInvalid(TestCase):
 
-class SubscriptionInvalidPost(TestCase):
 
     def setUp(self):
         self.resp = self.client.post('/inscricao/', {})
@@ -94,7 +80,8 @@ class SubscriptionInvalidPost(TestCase):
         form = self.resp.context['form']
         self.assertTrue(form.errors)
 
-class SubscriptionMessages(TestCase):
+
+class SubscribeSucessMessage(TestCase):
 
     def setUp(self):
         data = dict(name='Thiago Oliveira', cpf='12345678901',
