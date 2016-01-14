@@ -132,7 +132,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-# E-mail Configuration
+# Email Configuration
 DEFAULT_FROM_MAIL = config('DEFAULT_FROM_MAIL')
 EMAIL_BACKEND = config('EMAIL_BACKEND')
 EMAIL_HOST = config('EMAIL_HOST')
