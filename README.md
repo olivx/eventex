@@ -17,7 +17,7 @@ git clone git@github:olivx/eventex.git wttd
 cd wttd             
 python -m venv .wttd                
 source .wttd/bin/activete               
-pip install -r requirements.txt             
+pip install -r requirements-dev.txt             
 cp contrib/env-simple .env              
 python manage.py test                         
 ```
