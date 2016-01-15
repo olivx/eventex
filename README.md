@@ -2,12 +2,12 @@
 
 ##Como desenvolver ?
 
-1.  clone o repositorio.
-2.  crie um  virtual env com python 3.5.
+1.  Clone o repositorio.
+2.  Crie um  virtual env com python 3.5.
 3.  Ative o virtual env.
-3.  instale as dependencias 
-4.  configure uma instacia com um .env 
-5.  rode os testes
+3.  Instale as dependencias 
+4.  Configure uma instancia com um .env 
+5.  Rode os testes
 
 ```console
 git clone git@github:olivx/eventex.git wttd                 
@@ -21,12 +21,12 @@ python manage.py test
 
 ##Como realizar o deploy ?
 
-1. crie uma isntacia no heroku
-2. envie as configurações para heroku 
-3. defina uma secrect key para isntancia 
-4. defina DEBUG=False
-4. configure um serviço de email 
-5. envie o codigo para heroku
+1. Crie uma isntancia no heroku
+2. Envie as configurações para heroku 
+3. Defina uma secrect key para isntancia 
+4. Defina DEBUG=False
+4. Configure um serviço de email 
+5. Envie o codigo para heroku
 
 ```console                                            
 heroku create minha_instacia_heroku             
