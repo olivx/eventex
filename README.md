@@ -37,6 +37,6 @@ heroku create minha_instacia_heroku
 heroku config:push              
 heroku config:set SECRET_KEY='python -m contrib/secret_gen.py'                  
 heroku config:set DEBUG=False
-#configure yot email services
+#configure yor email services
 git push heroku master --force
 ```
