@@ -2,6 +2,7 @@
 
 [![Build Status](https://travis-ci.org/olivx/eventex.svg?branch=master)](https://travis-ci.org/olivx/eventex)
 [![Code Health](https://landscape.io/github/olivx/eventex/master/landscape.svg?style=flat)](https://landscape.io/github/olivx/eventex/master)
+[![Code Climate](https://codeclimate.com/github/olivx/eventex/badges/gpa.svg)](https://codeclimate.com/github/olivx/eventex)
 
 ##Como desenvolver ?
 
