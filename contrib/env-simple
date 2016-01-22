@@ -2,16 +2,16 @@ SECRET_KEY=+!xelvk7udp(9j)l&*vp*z23o1%1y@zwr&$@k*nf==qk!cjn^+
 DEBUG=True
 ALLOWED_HOSTS=127.0.0.1, .localhost, herokuapp.com
 
-# Herolu Sendgrid
+# Heroku Sendgrid
 # SENDGRID_PASSWORD: your_user_name
 # SENDGRID_USERNAME: your_password
 
 
-# Email Producion
-DEFAULT_FROM_MAIL=your_email
-EMAIL_BACKEND=django.core.mail.backends.smtp.EmailBackend
-EMAIL_HOST=smtp.sendgrid.net
-EMAIL_PORT=587
-EMAIL_USE_TLS=True
-EMAIL_HOST_USER=your_password
-EMAIL_HOST_PASSWORD=your_user_name
+# Email Production
+# DEFAULT_FROM_MAIL=oliveiravicente.net@gmail.com
+# EMAIL_BACKEND=django.core.mail.backends.smtp.EmailBackend
+# EMAIL_HOST=smtp.sendgrid.net
+# EMAIL_PORT=587
+# EMAIL_USE_TLS=True
+# EMAIL_HOST_USER=your_user_name
+# EMAIL_HOST_PASSWORD=your_password
