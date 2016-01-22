@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.utils.timezone import now
-from eventex.subscriptions.models import Subscrition
+from eventex.subscriptions.models import Subscription
 
 
 class SubscriptionsModelAdmin(admin.ModelAdmin):
@@ -16,4 +16,4 @@ class SubscriptionsModelAdmin(admin.ModelAdmin):
     subscribe_today.short_description = 'escritos hoje?'
     subscribe_today.boolean = True
 
-admin.site.register(Subscrition, SubscriptionsModelAdmin)
+admin.site.register(Subscription, SubscriptionsModelAdmin)

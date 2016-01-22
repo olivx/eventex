@@ -1,5 +1,5 @@
 from django.test import TestCase
-from eventex.subscriptions.models import Subscrition
+from eventex.subscriptions.models import Subscription
 from datetime import datetime
 
 
@@ -7,7 +7,7 @@ class SubcriptionModelTest(TestCase):
 
     def setUp(self):
 
-        self.obj = Subscrition(
+        self.obj = Subscription(
             name = 'thiago oliveira',
             cpf = 12345678901,
             email = 'oliveiravicente.net@gmail.com',
@@ -16,10 +16,10 @@ class SubcriptionModelTest(TestCase):
         self.obj.save()
 
     def test_create(self):
-        self.assertTrue(Subscrition.objects.exists())
+        self.assertTrue(Subscription.objects.exists())
 
     def test_created_at(self):
-        ''' Subscrition Must have an auto created_at attrib '''
+        ''' Subscription Must have an auto created_at attrib '''
         self.assertIsInstance(self.obj.created_at, datetime)
 
     def test_str(self):

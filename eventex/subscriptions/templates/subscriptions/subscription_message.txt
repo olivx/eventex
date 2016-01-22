@@ -3,10 +3,10 @@ Ola, Tudo bem ?
 estamos felizes que tenha realizado a inscrição.
 dados que nos foi fornecido.
 
-nome:   {{ name }}
-cpf:    {{ cpf }}
-e-mail: {{ email }}
-phone:  {{ phone }}
+nome:   {{ subscription.name }}
+cpf:    {{ subscription.cpf }}
+e-mail: {{ subscription.email }}
+phone:  {{ subscription.phone }}
 
 Obrigado,
 nossa equipe entra em contato em até 48 horas uteis.

@@ -1,7 +1,7 @@
 from django.db import models
 
 
-class Subscrition(models.Model):
+class Subscription(models.Model):
     name = models.CharField('nome', max_length=100)
     cpf = models.CharField('cpf', max_length=11)
     email = models.EmailField('e-mail')
