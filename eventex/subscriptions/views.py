@@ -1,7 +1,7 @@
 from django.conf import settings
 from django.core import mail
 from django.http import HttpResponseRedirect, Http404
-from django.shortcuts import render
+from django.shortcuts import render , resolve_url as r
 from django.template.loader import render_to_string
 from eventex.subscriptions.forms import SubscriptionForm
 from eventex.subscriptions.models import Subscription
@@ -26,7 +26,7 @@ def create(request):
                subscription.email, 'subscriptions/subscription_message.txt',
                {'subscription': subscription})
 
-    return HttpResponseRedirect('/inscricao/{}/'.format(subscription.pk))
+    return HttpResponseRedirect(r('subscriptions:detail', subscription.pk))
 
 
 def new(request):
