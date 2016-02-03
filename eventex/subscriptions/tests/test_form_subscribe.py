@@ -16,4 +16,3 @@ class SubscriptionFormTest(TestCase):
         """Form must have 4 fields name, cpf, email, phone"""
         expect = ['name', 'cpf', 'email', 'phone']
         self.assertSequenceEqual(expect, list(self.form.fields))
-

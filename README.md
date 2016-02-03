@@ -14,7 +14,7 @@
 5.  Rode os testes
 
 ```console
-git clone git@github:olivx/eventex.git wttd                 
+git clone git@github.com:olivx/eventex.git wttd                 
 cd wttd             
 python -m venv .wttd                
 source .wttd/bin/activete               
