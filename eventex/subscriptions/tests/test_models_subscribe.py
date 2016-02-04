@@ -8,10 +8,10 @@ class SubcriptionModelTest(TestCase):
     def setUp(self):
 
         self.obj = Subscription(
-            name = 'thiago oliveira',
-            cpf = 12345678901,
-            email = 'oliveiravicente.net@gmail.com',
-            phone = '011-97051-3508'
+            name='thiago oliveira',
+            cpf=12345678901,
+            email='oliveiravicente.net@gmail.com',
+            phone='011-97051-3508'
         )
         self.obj.save()
 
@@ -19,7 +19,7 @@ class SubcriptionModelTest(TestCase):
         self.assertTrue(Subscription.objects.exists())
 
     def test_created_at(self):
-        ''' Subscription Must have an auto created_at attrib '''
+        """ Subscription Must have an auto created_at attrib """
         self.assertIsInstance(self.obj.created_at, datetime)
 
     def test_str(self):

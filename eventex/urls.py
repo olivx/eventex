@@ -3,8 +3,6 @@ from django.contrib import admin
 
 
 from eventex.core.views import home
-from eventex.subscriptions.views import subscribe, detail
-
 
 urlpatterns = [
 
