@@ -347,3 +347,11 @@ section header h2 {
 
 
 /* Fim Customização */
+
+.speackers h2 {
+    text-transform: uppercase;
+}
+.speackers img{
+    width:200px;
+    border-radius:100%;
+}

@@ -1,6 +1,6 @@
 {% load static %}
 <!DOCTYPE html>
-<html>
+<html xmlns:http="http://www.w3.org/1999/xhtml">
 	<head>
         <title>{% block title %}Eventex - O maior encontro hacker do mundo!
         {% endblock %}</title>
@@ -37,24 +37,7 @@
 
 
         <div class="header-frame header-frame-absolute  row">
-            <header class="header header-inline min-h-3 row desktop-12 container" role="banner">
-
-                <div class="site-logo">
-                    <h1><a href="{% url 'home' %}" rel="home">Eventex</a></h1>
-                    <p class="site-description screen-reader-only">O maior encontro hacker do mundo!</p>
-                </div>
-
-                <nav class="nav-inline" role="navigation">
-                    <a href="javascript:void(0);" class="nav-mobile"><i class="fa fa-bars"></i></a>
-                    <ul>
-                        <li><a data-scroll href="#overview">Conferência</a></li>
-                        <li><a data-scroll href="#sponsors">Patrocinadores</a></li>
-                        <li><a data-scroll href="#register">Inscrição</a></li>
-                        <li><a data-scroll href="#venue">Local</a></li>
-                    </ul>
-                </nav>
-
-            </header>
+            {% include 'nav.html' only %}
         </div>
         <!-- TOP -->
         <section id="top" data-stellar-background-ratio="0.5">
@@ -71,6 +54,22 @@
                 <h2>A Conferência</h2>
                 <p class="lead">A maior reunião de hackers do mundo.<br>Reunindo profissionais e entusiastas dos quatro <br>cantos do planeta, o <em>Eventex</em> é o lugar onde você precisa estar.</p>
                 <p><a class="btn-basic btn-blue" data-scroll href="#register">Garanta a sua vaga!</a></p>
+            </div>
+        </section>
+
+        <!--Speacker-->
+        <section id="speackers">
+
+
+            <div class="speackers text-align-center row desktop-8 padding-bottom-2 container">
+                <h2>Palestrantes Convidados</h2>
+
+                {% for speacker in speackers %}
+                    <div class="desktop-4">
+                        <img src="{{ speacker.link }}">
+                            <h4>{{ speacker.name }}</h4>
+                    </div>
+                {% endfor %}
             </div>
         </section>
 
