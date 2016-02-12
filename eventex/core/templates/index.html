@@ -57,17 +57,21 @@
             </div>
         </section>
 
-        <!--Speacker-->
-        <section id="speackers">
+        <!--Speaker-->
+        <section id="speakers">
 
 
-            <div class="speackers text-align-center row desktop-8 padding-bottom-2 container">
+            <div class="speakers text-align-center row desktop-8 padding-bottom-2 container">
                 <h2>Palestrantes Convidados</h2>
 
-                {% for speacker in speackers %}
+                {% for speaker in speakers %}
                     <div class="desktop-4">
-                        <img src="{{ speacker.link }}">
-                            <h4>{{ speacker.name }}</h4>
+                        <img src="{{ speaker.photo }}">
+                            <h4>
+                                <a href="{{ speaker.get_absolute_url }}" >
+                                    {{ speaker.name }}
+                                </a>
+                            </h4>
                     </div>
                 {% endfor %}
             </div>

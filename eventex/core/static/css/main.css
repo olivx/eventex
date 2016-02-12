@@ -348,10 +348,16 @@ section header h2 {
 
 /* Fim Customização */
 
-.speackers h2 {
+.speakers h2 {
     text-transform: uppercase;
 }
-.speackers img{
+.speakers img{
     width:200px;
     border-radius:100%;
+}
+
+.speakers img.photo{
+    float:left;
+    padding-right: 15px;
+
 }

@@ -1,7 +1,10 @@
 from django.test import TestCase
 from django.shortcuts import resolve_url as r
 
+
 class HomeTest(TestCase):
+    fixtures = ['keynotes.json']
+
     def setUp(self):
         self.resp = self.client.get(r('home'))
 
@@ -19,12 +22,19 @@ class HomeTest(TestCase):
         self.assertContains(self.resp, expected)
 
     def test_has_speakers(self):
-        """Must have speackers in home page"""
-        expected = ['Grace Hopper', 'http://hbn.link/hopper-pic',
-                     'Allan Turing', 'http://hbn.link/turing-pic']
+        """Must have speakers in home page"""
+        expected = ['Grace Hopper',
+                    'http://hbn.link/hopper-pic',
+                    'href="{}"'.format(r('speaker_detail', slug='grace-hopper')),
+                    'Allan Turing',
+                    'http://hbn.link/turing-pic',
+                    'href="{}"'.format(r('speaker_detail', slug='alan-turing'))
+                    ]
+
         for e in expected:
             with self.subTest():
                 self.assertContains(self.resp, e)
+
     def test_link_palestrantes(self):
         """Must have a link to speackers"""
         expected = 'href="{}#speackers"'.format(r('home'))
