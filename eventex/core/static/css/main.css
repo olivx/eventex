@@ -361,3 +361,15 @@ section header h2 {
     padding-right: 15px;
 
 }
+
+.talks h3{
+    min-right:0;
+    padding:0;
+}
+
+.talks h4{
+    min-right:1em;
+    font-size:1em;
+    margin:0;
+    padding:0;
+}

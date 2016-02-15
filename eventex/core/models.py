@@ -23,12 +23,12 @@ class Speaker(models.Model):
 class Contact(models.Model):
     EMAIL = 'E'
     PHONE = 'P'
-    KINDS =(
-        (EMAIL,'Email'),
+    KINDS = (
+        (EMAIL, 'Email'),
         (PHONE, 'Telefone'),
     )
     speaker = models.ForeignKey('Speaker', verbose_name='Palestrante')
-    kind = models.CharField('Tipo Contato',max_length=1, choices=KINDS)
+    kind = models.CharField('Tipo Contato', max_length=1, choices=KINDS)
     value = models.CharField('Valor', max_length=255)
 
     class Meta:
@@ -38,4 +38,17 @@ class Contact(models.Model):
     def __str__(self):
         return str(self.value)
 
+
+class Talk(models.Model):
+    title = models.CharField('palestra', max_length=200)
+    start = models.TimeField('inicio', blank=True, null=True)
+    description = models.TextField('descrição', blank=True)
+    speakers = models.ManyToManyField('Speaker', verbose_name='palestrantes', blank=True)
+
+    class Meta:
+        verbose_name = 'palestra'
+        verbose_name_plural = 'palestras'
+
+    def __str__(self):
+        return self.title
 
