@@ -1,9 +1,10 @@
 from django.core.exceptions import ValidationError
 from django.test import TestCase
-from eventex.core.models import Speaker, Contact
+from eventex.core.manage import PeriodManager
+from eventex.core.models import Speaker, Contact, Talk
 
 
-class ContactModel(TestCase):
+class ContactModelTest(TestCase):
     def setUp(self):
         self.speaker = Speaker.objects.create(name='Thiago Oliveira', slug='thiago-oliveira',
                                               photo='http://hbn.link/hb-pic')
@@ -26,3 +27,46 @@ class ContactModel(TestCase):
     def test_str(self):
         contact = Contact(speaker=self.speaker, kind=Contact.EMAIL, value='oliveiravicente.net@gmail.com')
         self.assertEquals('oliveiravicente.net@gmail.com', str(contact))
+
+
+class ContactManagerTest(TestCase):
+    def setUp(self):
+        s = Speaker.objects.create(
+                name='Thiago Oliveira',
+                slug='thiago-oliveira',
+                photo='http://hb.link/hb-pic'
+        )
+
+        s.contact_set.create(kind=Contact.EMAIL, value='oliveiravicente.net@gmail.com')
+        s.contact_set.create(kind=Contact.PHONE, value='11-970513508')
+
+    def test_emails(self):
+        qs = Contact.objects.emails()
+        expected = ['oliveiravicente.net@gmail.com']
+        self.assertQuerysetEqual(qs, expected, lambda o: o.value)
+
+    def test_phones(self):
+        qs = Contact.objects.phones()
+        expected = ['11-970513508']
+        self.assertQuerysetEqual(qs, expected, lambda o: o.value)
+
+
+class PeriodManagerTest(TestCase):
+
+    def setUp(self):
+        Talk.objects.create(title='Talk at Morning', start='11:59')
+        Talk.objects.create(title='Talk at afternoon', start='12:00')
+
+    def test_period_manager(self):
+        self.assertIsInstance(Talk.objects, PeriodManager)
+
+    def test_at_morning(self):
+        qs = Talk.objects.at_morning()
+        expected = ['Talk at Morning']
+        self.assertQuerysetEqual(qs, expected, lambda o: o.title)
+
+
+    def test_at_afternoon(self):
+        qs = Talk.objects.at_afternoon()
+        expected = ['Talk at afternoon']
+        self.assertQuerysetEqual(qs, expected, lambda o: o.title)
