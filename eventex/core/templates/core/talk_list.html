@@ -20,6 +20,13 @@
             <p>Ainda não há pelastras marcadas para tarde.</p>
             {% endfor %}
 
+
+            <h2>Mini-cursos</h2>
+            {% for curse in curses %}
+            {% include 'core/talk_list_snippet.html' with talk=curse only %}
+            {% empty %}
+            {% endfor %}
+
         </div>
     </section>
 {% endblock content %}

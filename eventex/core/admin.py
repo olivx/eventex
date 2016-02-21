@@ -1,5 +1,5 @@
 from django.contrib import admin
-from eventex.core.models import Speaker, Contact, Talk
+from eventex.core.models import Speaker, Contact, Talk, Curse
 
 
 class ContactInline(admin.TabularInline):
@@ -27,8 +27,9 @@ class SpeakerModelAdmin(admin.ModelAdmin):
     phone.short_description = 'telefone'
 
     def email(self, obj):
-        return obj.contact_set.emails.first()
+        return obj.contact_set.emails().first()
     email.short_description = 'e-mail'
 
 admin.site.register(Speaker, SpeakerModelAdmin)
 admin.site.register(Talk)
+admin.site.register(Curse)
