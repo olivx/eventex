@@ -6,17 +6,17 @@ from eventex.core.models import Speaker, Contact, Talk
 
 class ContactModelTest(TestCase):
     def setUp(self):
-        self.speaker = Speaker.objects.create(name='Thiago Oliveira', slug='thiago-oliveira',
+        self.speaker = Speaker.objects.create(name='Thiago', slug='thiago',
                                               photo='http://hbn.link/hb-pic')
 
     def test_contact_email(self):
         """Speaker must have a contact"""
-        Contact.objects.create(speaker=self.speaker, kind=Contact.EMAIL, value='oliveiravicente.net@gmail.com')
+        Contact.objects.create(speaker=self.speaker, kind=Contact.EMAIL, value='email.net@gmail.com')
 
         self.assertTrue(Contact.objects.exists())
 
     def test_contact_phone(self):
-        Contact.objects.create(speaker=self.speaker, kind=Contact.PHONE, value='11 97051-3508')
+        Contact.objects.create(speaker=self.speaker, kind=Contact.PHONE, value='11 0000-0000')
         self.assertTrue(Contact.objects.exists())
 
     def test_contact_choices(self):
@@ -25,29 +25,29 @@ class ContactModelTest(TestCase):
         self.assertRaises(ValidationError, contact.full_clean)
 
     def test_str(self):
-        contact = Contact(speaker=self.speaker, kind=Contact.EMAIL, value='oliveiravicente.net@gmail.com')
-        self.assertEquals('oliveiravicente.net@gmail.com', str(contact))
+        contact = Contact(speaker=self.speaker, kind=Contact.EMAIL, value='email.net@gmail.com')
+        self.assertEquals('email.net@gmail.com', str(contact))
 
 
 class ContactManagerTest(TestCase):
     def setUp(self):
         s = Speaker.objects.create(
-                name='Thiago Oliveira',
-                slug='thiago-oliveira',
+                name='Thiago',
+                slug='thiago',
                 photo='http://hb.link/hb-pic'
         )
 
-        s.contact_set.create(kind=Contact.EMAIL, value='oliveiravicente.net@gmail.com')
-        s.contact_set.create(kind=Contact.PHONE, value='11-970513508')
+        s.contact_set.create(kind=Contact.EMAIL, value='email.net@gmail.com')
+        s.contact_set.create(kind=Contact.PHONE, value='11-00000000')
 
     def test_emails(self):
         qs = Contact.objects.emails()
-        expected = ['oliveiravicente.net@gmail.com']
+        expected = ['email.net@gmail.com']
         self.assertQuerysetEqual(qs, expected, lambda o: o.value)
 
     def test_phones(self):
         qs = Contact.objects.phones()
-        expected = ['11-970513508']
+        expected = ['11-00000000']
         self.assertQuerysetEqual(qs, expected, lambda o: o.value)
 
 
